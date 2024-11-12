@@ -1,0 +1,127 @@
+/* #fff8e6 - baby pink
+#032119 - dark green
+#febe16 - yellow btn
+#ffc019 - text yellow
+#010822 - text blue 
+#314B43 - light green bg icon  */
+@font-face {
+    font-family: 'Jost_h';
+    src: url('../assets/Fonts/Jost-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Jost_l';
+    src: url('../assets/Fonts/Jost-Regular.ttf');
+}
+
+.homepage {
+    height: 100vh;
+    width: 100%;
+    background-color: #fff8e6;
+}
+
+.homepage nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 22vh;
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+}
+
+.homepage nav h1 {
+    font-family: 'Jost_h';
+    font-size: 1.8rem;
+}
+
+.homepage nav button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    margin-top: 10px;
+    background-color: #febe16;
+    border: none;
+    border-radius: 8px;
+    color: #032119;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.homepage .container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    padding: 0 22vh ;
+}
+
+.homepage .container .ylw_cnct {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.homepage .container .grn_cnct {
+    width: 30%;
+    height: 100%;
+    background-color: #032119;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    left: 60%;
+}
+
+.homepage .container .ylw_cnct h1 {
+    font-family: 'Jost_h';
+    font-size: 4rem;
+}
+
+.homepage .container .ylw_cnct button {
+    width: 200px;
+    border-radius: 5px;
+    border: none;
+    background-color: #febe16;
+    margin-top: 20px;
+    padding: 15px 10px;
+    color: #032119;
+    font-size: 1.4rem;
+    font-weight: 600;
+    font-family: 'Jost_l';
+}
+
+.homepage .container .grn_cnct img {
+    object-fit: cover;
+    width: 100%;
+    scale: 1.2;
+    border-radius: 12px;
+}
+
+@media(max-width:1200px) {
+    .homepage nav {
+        padding: 15px 10vh;
+    }
+
+    .homepage .container {
+        padding: 0 10vh;
+    }
+
+    .homepage .container .grn_cnct {
+        left: 65%;
+    }
+}
+@media(max-width:1000px){
+    .homepage .container .ylw_cnct h1 {
+        font-size: 3.5rem;
+    }
+}
+@media(max-width:900px) {
+    .homepage nav {
+        padding: 15px 6vh;
+    }
+
+    .homepage .container {
+        padding: 0 6vh;
+    }
+
+   
+}
