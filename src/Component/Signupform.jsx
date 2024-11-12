@@ -3,6 +3,8 @@ import axios from 'axios'
 
 const SignupForm = ({ toggleVisibility }) => {
 
+  
+  const [loading,setLoading ]  = useState(false);
   const [formData,setFormData] = useState({
     name:'',
     email:'',
@@ -18,6 +20,7 @@ const SignupForm = ({ toggleVisibility }) => {
 
   const handleRegister = async (e)=>{
     e.preventDefault();
+    setLoading(true);
 
   try{
     if(!formData.name || !formData.email || !formData.password){
@@ -30,7 +33,10 @@ const SignupForm = ({ toggleVisibility }) => {
   catch(err){
     console.log('Register Api Error : ',err);
     alert('Server Error');
-  };
+  }
+  finally{
+    setLoading(false);
+  }
 
   setFormData({
     name:'',
@@ -64,7 +70,9 @@ const SignupForm = ({ toggleVisibility }) => {
                 />
                 
                  <button onClick={toggleVisibility} style={{width:'6vw',padding:'4px'}}>Login</button> <span style={{fontSize:'5rem',margin:'15px',position:'relative',top:'2.5vh'}}>/</span>
-                  <button onClick={handleRegister} style={{width:'9vw',padding:'12px'}}>Signup</button> 
+                  <button onClick={handleRegister} disabled={loading} style={{width:'9vw',padding:'12px'}}>
+                    {loading?'Processing':'Signup'}
+                    </button> 
             </form>
         </div>
     </>

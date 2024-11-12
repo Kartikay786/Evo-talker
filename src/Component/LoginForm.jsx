@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const LoginForm = ({ toggleVisibility }) => {
 
   const navigate = useNavigate();
-
+  const [loading,setLoading ]  = useState(false);
   
     const [formdata,setFormdata] =useState({
       email:'',
@@ -19,6 +19,7 @@ const LoginForm = ({ toggleVisibility }) => {
 
     const handleLogin = async (e) => {
       e.preventDefault();
+      setLoading(true);
 
       try{
 
@@ -39,6 +40,10 @@ const LoginForm = ({ toggleVisibility }) => {
       catch(err){
         console.log('Login Error:',err);
         alert('Login failed due to network error');
+        
+      }
+      finally{
+        setLoading(false);
       }
     }
   return (
@@ -60,7 +65,9 @@ const LoginForm = ({ toggleVisibility }) => {
                 onChange={handleChange}
                 />
                  <button onClick={toggleVisibility}   style={{width:'6vw',padding:'4px'}}>Signup</button> <span style={{fontSize:'5rem',margin:'15px',position:'relative',top:'2.5vh'}}>/</span>
-                  <button onClick={handleLogin} style={{width:'9vw',padding:'12px'}}>Login</button> 
+                  <button onClick={handleLogin} disabled={loading} style={{width:'9vw',padding:'12px'}}>
+                    {loading? 'Processing...' : 'Login'}
+                    </button> 
             </form>
         </div>
     </>
