@@ -1,0 +1,52 @@
+.postcontainer {
+    width: 80%;
+    min-height: 30vh
+}
+
+.post {
+    min-height: 30vh;
+    width: 100%;
+    background-color: #febe16;
+    margin-top: 8vh;
+    border-radius: 12px;
+    padding: 4vh
+}
+
+.commentInput{
+    width: 80%;
+     border-radius: 8px;
+     font-size: 16px;
+     font-family: Jost_l;
+     padding: 4px 12px;
+     border: 2px solid #314B43;
+     color: #314B43 ;
+     background: transparent 
+}
+
+@media(max-width:1150px) {
+    .postcontainer {
+        width: 100%;
+    }
+}
+
+@media(max-width:768px) {
+    .post {
+        padding: 2vh;
+    }
+}
+
+@media(max-width:670px){
+    .commentInput{
+        width: 75%;
+    }
+}
+@media(max-width:480px){
+    .commentInput{
+        width: 70%;
+    }
+}
+@media(max-width:400px){
+    .commentInput{
+        width: 75%;
+    }
+}

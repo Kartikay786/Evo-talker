@@ -1,0 +1,76 @@
+.loginform{
+    padding: 6vh;
+
+    min-height:20vh;
+    border:5px solid #ffc019;
+     width:400px;
+    border-radius:24px
+}
+
+.loginform .smallbtn{
+   
+    border-radius: 5px;
+    border: none;
+    background-color: #febe16;
+    margin-top: 20px;
+    color: #032119;
+    font-size: 1.4rem;
+    
+    font-weight: 600;
+    font-family: 'Jost_l';
+}
+ .slash{
+    font-size:4.2rem;
+    margin:15px;
+    position:relative;
+    top: 1.3vh;
+}
+
+
+@media(max-width:750px){
+      .loginform{
+        padding: 4vh;
+        width: 350px;
+      }
+}
+
+@media(max-width:560px){
+    .loginform{
+      padding:4vh 2vh ;
+      width: 300px;
+    }
+    .slash{
+        font-size: 4rem;
+        margin: 6px;
+        top: 2vh;
+    }
+}
+
+
+
+@media (max-width: 465px) {
+    .loginform {
+        padding: 3vh 1.5vh; /* Smaller padding */
+        width: 280px; /* Adjusted form width */
+    }
+
+    .loginform h1 {
+        font-size: 1.8rem; /* Smaller font size */
+        margin-bottom: 3vh;
+    }
+
+    .loginform input {
+        font-size: 0.9rem; /* Smaller input font size */
+        padding: 5px 8px; /* Reduced padding */
+    }
+
+    .loginform .smallbtn {
+        width: 80px; /* Narrower buttons */
+        font-size: 1rem;
+    }
+     .slash {
+        font-size: 3rem;
+        margin: 4px;
+    }
+}
+

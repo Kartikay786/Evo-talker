@@ -1,0 +1,30 @@
+.profilebox{
+   min-height: 50vh;
+    padding:  6vh;
+    border: 5px solid #ffc019;
+    width: 90%;
+    border-radius: 24px
+}
+
+.postcreate{
+     width: 90%;
+      height: 60vh;
+      border: 5px solid #032119 ;
+      border-radius: 12px;
+      padding: 4vh
+}
+
+@media(max-width:1150px){
+    .profilebox{
+        width: 100%;
+    }
+}
+@media(max-width:800px){
+    .profilebox{
+        padding: 6vh 1vh;
+    }
+    .postcreate{
+        width: 100%;
+        padding: 4vh 2vh;
+    }
+}

@@ -6,12 +6,12 @@
 #314B43 - light green bg icon  */
 @font-face {
     font-family: 'Jost_h';
-    src: url('../assets/Fonts/Jost-Medium.ttf');
+    src: url('../../assets/Fonts/Jost-Medium.ttf');
 }
 
 @font-face {
     font-family: 'Jost_l';
-    src: url('../assets/Fonts/Jost-Regular.ttf');
+    src: url('../../assets/Fonts/Jost-Regular.ttf');
 }
 
 .homepage {
@@ -37,7 +37,7 @@
 .homepage nav button {
     padding: 8px 16px;
     margin-right: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
     background-color: #febe16;
     border: none;
     border-radius: 8px;
@@ -124,4 +124,75 @@
     }
 
    
+}
+
+@media(max-width:650px){
+    .homepage nav {
+        padding: 15px 3vh;
+    }
+
+    .homepage .container {
+        padding: 0 3vh;
+    }
+    .homepage .container .ylw_cnct{
+        width: 65%;
+    }
+   
+    .homepage .container .grn_cnct {
+        width: 25%;
+        left: 72%;
+    }
+}
+
+@media(max-width:470px){
+    .homepage .container .ylw_cnct{
+        width: 80%;
+        padding: 10px;
+    }
+    .homepage .container .ylw_cnct button {
+        width: 180px;
+        padding: 10px 8px;
+    }
+    .homepage nav button{
+        margin-right: 0;
+        padding: 6px 12px;
+    }
+    .homepage .container  .grn_cnct{
+        /* visibility: hidden; */
+        width: 15%;
+        left: 82%;
+    }
+    .homepage .container img{
+        display: none;
+    }
+}
+
+@media(max-width:400px){
+    .homepage .container{
+        padding-left: 1vh;
+        padding-right: 1vh;
+    }
+    .homepage .container  .grn_cnct{
+        visibility: hidden;
+        
+    }
+    .homepage .container .ylw_cnct{
+        width: 100%;
+        padding: 10px;
+        align-items: center;
+    }
+    .homepage nav{
+        padding: 1.5vh;
+    }
+    .homepage nav button{
+        padding: 6px 8px;
+    }
+}
+@media(max-width:350px){
+    
+    .homepage .container .ylw_cnct{
+        width: 100%;
+        padding: 10px;
+        align-items: center;
+    }
 }
