@@ -58,8 +58,9 @@ const SignupForm = ({ toggleVisibility }) => {
   return (
     <>
       <div className="loginform" style={{  }}  data-aos='zoom-in'>
-        <h1 style={{ fontSize: '3rem', textAlign: 'center', fontFamily: 'Jost_h', color: '#010822', marginBottom: '5vh' }}>Signup</h1>
-
+        <h1 style={{ fontSize: '3rem', textAlign: 'center', fontFamily: 'Jost_h', color: '#010822', marginBottom: '2vh' }}>Signup</h1>
+        <p style={{ fontSize: '1.15rem', textAlign: 'center', fontFamily: 'Jost_l', color: '#010822', marginBottom: '4vh' }}>Hey, Enter your details to create  your account !! </p>
+      
         <form action="">
           <input type="text" style={{ fontSize: '1.2rem', marginTop: '3vh', fontFamily: 'Jost_l', padding: '4px 10px', border: 'none', background: 'transparent', borderBottom: '2px solid #010822', width: '100%' }}
             placeholder='Enter your Name'
@@ -75,7 +76,7 @@ const SignupForm = ({ toggleVisibility }) => {
             onChange={handleChange}
             required
           />
-          <input type="password" style={{ fontSize: '1.2rem', marginTop: '3vh', fontFamily: 'Jost_l', padding: '4px 10px', border: 'none', background: 'transparent', borderBottom: '2px solid #010822', width: '100%' }}
+          <input type="password" style={{ fontSize: '1.2rem',marginBottom:'28px', marginTop: '3vh', fontFamily: 'Jost_l', padding: '4px 10px', border: 'none', background: 'transparent', borderBottom: '2px solid #010822', width: '100%' }}
             placeholder='Enter your Password'
             name='password'
             value={formData.password}
