@@ -11,243 +11,189 @@ import 'aos/dist/aos.css'
 
 const PostCnct = () => {
 
-    useEffect(()=>{
-        AOS.init({duration:1000});
-        AOS.refresh();
-      },[])
-
-      
-    const [data, setData] = useState([]);
-    const [postUser, setPostUser] = useState();
-    const [postComments, setPostComments] = useState([]);
-
-    const userId = localStorage.getItem('userId');
-
-    const token = localStorage.getItem('userToken');
-
-    // get all post
-
     useEffect(() => {
-        const getAllPost = async () => {
+        AOS.init({ duration: 1000 });
+        AOS.refresh();
+    }, [])
+
+    const [data, setData] = useState([]);
+    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('userToken');
+    const name = localStorage.getItem('userName');
+    const [commentboxVisible, setCommentboxVisible] = useState(false);
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [commentInput, setCommentInput] = useState("");
+    const [likesCount,setLikesCount] = useState([]);
+
+
+    // fetch post
+    useEffect(() => {
+        const fetchPosts = async () => {
             try {
-                const result = await axios.get(`${import.meta.env.VITE_API_URL}/api/post/`);
-                setData(result.data.posts);
-                // console.log(result.data.posts);
-            } catch (err) {
-                console.log('Error fetching posts:', err);
+                setLoading(true);
+                const response = await axios.get("http://localhost:3000/api/post/", {
+                    headers: { Authorization: `Bearer ${token}` },
+                });
+                setPosts(response.data.posts);
+            } catch (error) {
+                console.error("Error fetching posts:", error);
+            } finally {
+                setLoading(false);
             }
         };
-        getAllPost();
+        fetchPosts();
     }, []);
 
-    // get all comments
-
-   
-        const getPostComments = async (postId) => {
-            try {
-                const result = await axios.get(`${import.meta.env.VITE_API_URL}/api/comment/${postId}`);
-                setPostComments(result.data.comments);
-
-                console.log(postComments);
-            } catch (err) {
-                console.log('Error fetching posts:', err);
-            }
-        };
-
-
-    // create comment
-
-    const [formData, setFormData] = useState({
-        comment: ''
-    })
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleCreateComment = async (e, postId) => {
-        e.preventDefault();
-
+    // like 
+    const handleLike = async (postId,setLikesCount) => {
         try {
-            const result = await axios.post(`${import.meta.env.VITE_API_URL}/api/comment/${postId}/${userId}`, formData, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
+            const response = await axios.post(`http://localhost:3000/api/comment/like/${postId}`, {}, {
+                headers: { Authorization: `Bearer ${token}` },
             });
-
-            console.log('Comment response:', result);
-            alert('Comment created successfully');
-        } catch (err) {
-            console.log('Comment error:', err);
-            alert('Network Issue');
+            // setPosts((prevPosts) =>
+            //     prevmap((post) =>
+            //         post._id === postId ? { ...post, likes: post.likes + 1 } : post
+            //     )
+            // );
+            setLikesCount(response.data);
+            console.log(response.data)
+        } catch (error) {
+            console.error("Error liking the post:", error);
         }
-
-        setFormData({
-            comment: ''
-        });
     };
+
+    // add comment
+    const handleAddComment = async (postId) => {
+        if (!commentInput.trim()) return; // Prevent empty comments
+        try {
+            const response = await axios.post(
+                `YOUR_API_ENDPOINT/posts/${postId}/comments`,
+                { text: commentInput },
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            setPosts((prevPosts) =>
+                prevPosts.map((post) =>
+                    post._id === postId
+                        ? { ...post, comments: [...post.comments, response.data] }
+                        : post
+                )
+            );
+            setCommentInput(""); // Reset input
+        } catch (error) {
+            console.error("Error adding a comment:", error);
+        }
+    };
+
+
+
 
     return (
-        <div className="ylw_cnct" style={{ justifyContent: 'start', paddingTop: '15vh' }}>
+        <div className="container" style={{padding:'0 4vw'}}>
+
+        <div className="ylw_cnct" style={{ justifyContent: 'start', paddingTop: '15vh', width: '100%' }}>
 
             <div className="postcontainer" style={{}}>
-                {/* {data.map((post) => (
-                    <div key={post._id} className="post" style={{}}>
-                        <h1 style={{ fontSize: '2rem', margin: '10px 0 20px ', padding: '0 0 20px ', color: '#010822', borderBottom: '1px solid #010822' }}>{post.author.name || 'NA'}</h1>
 
-                        <h1 style={{ fontSize: '1.5rem', fontWeight: '500', margin: '10px 0 5px ', color: '#010822' }}>{post.title}</h1>
-                        <div style={{ fontFamily: 'Jost_l', fontSize: '1.3rem', color: '#032119', margin: '2vh 0' }}>{post.content}</div>
-                        <p style={{ fontSize: '1.1rem', fontFamily: 'Jost_l', marginTop: '2.5vh', color: '#032119', fontWeight: '600' }}>{post.tags.join(' ')}</p>
+         
 
-                        <div style={{width:'100%'}}>
-                            <input
-                                type="text"
-                                name='comment'
-                                className='commentInput'
-                                value={formData.comment}
-                                onChange={handleChange}
-                                style={{ }}
-                                placeholder='Write a Comment ...'
-                            />
 
-                            <button className='sendbtn' onClick={(e) => handleCreateComment(e, post._id)} style={{ backgroundColor: '#032119', padding: '2px', width: '50px', height: '50px', borderRadius: '50%', marginLeft: '10px', color: '#fff', fontFamily: 'Jost_l', fontWeight: '100' }}><i className="ri-send-plane-fill"></i></button>
-                        </div>
-                    </div>
-                ))} */}
-                {data.map((post) => (
-                    <div key={post._id} style={styles.cardContainer} data-aos="fade-right">
-                        <div style={styles.header}>
-                            <h2 style={styles.title}>{post.title}</h2>
-                            <p style={styles.username}>by {post.author.name}</p>
-                        </div>
-                        <div style={styles.content}>
-                            <p>{post.content}</p>
-                        </div>
-                        <div style={styles.footer}>
-                            <div style={styles.tags}>
-                                {post.tags.map((tag, index) => (
-                                    <span key={index} style={styles.tag}>
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                            <div style={styles.comments}>
-                                <strong>Comments:</strong>
-                                <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItem: 'center', height: '5vh', margin: '12px 0' }}>
-                                    <input
-                                        type="text"
-                                        name='comment'
-                                        className='commentInput'
-                                        value={formData.comment}
-                                        onChange={handleChange}
-                                        style={{}}
-                                        placeholder='Write a Comment ...'
-                                    />
-
-                                    <button className='sendbtn' onClick={(e) => handleCreateComment(e, post._id)} style={{ backgroundColor: '#032119', padding: '2px', width: '40px', height: '40px', borderRadius: '50%', marginLeft: '10px', color: '#fff', fontFamily: 'Jost_l', fontWeight: '100', marginTop: '0vh' }}><i className="ri-send-plane-fill " style={{ marginTop: '1vh' }}></i></button>
-
-                                   
+                {loading ? (
+                    <p>Loading...</p>
+                ) : (
+                    posts.map((post) => (
+                        <div className="postcard" key={post._id}>
+                            <div className="userdets" style={{ display: 'flex' }}>
+                                <img className="pfpic" src={post.authorImg} alt="" />
+                                <div className="username" style={{ fontFamily: 'Jost_l' }}>
+                                    <p>{post.authorName}</p>
+                                    <p style={{ color: '#999', fontSize: '14px' }}>
+                                        {new Date(post.createdAt).toLocaleDateString()}
+                                    </p>
                                 </div>
-                                {/* <p onClick={(e) => {getPostComments(post._id)}} style={{ fontSize: '1rem', fontFamily: 'Jost_l', marginTop: '2.5vh', color: '#032119', cursor: 'pointer' }}>See Comments ....</p> */}
-
                             </div>
-                            {/* {
-                                postComments && (
-                                    <ul style={styles.commentList}>
-                                        {postComments.map((comment, index) => (
-                                            <li key={index} style={styles.comment}>
-                                                {comment.comment}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                )
-                            } */}
+                            <div className="postcontent">
+                                {post.image && <img src={post.image} alt="Post" />}
+                                <p className="posttext">{post.content}</p>
+                            </div>
+                            <hr style={{ marginTop: '24px', marginBottom: '12px' }} />
+                            <div className="tools">
+                                <div style={{ fontFamily: 'Jost_l', color: '#D91656',display:'flex',alignItems:'center' }} >
+                                    <i onClick={() => handleLike(post._id,setLikesCount)} className="ri-heart-3-fill" /> {post.likes} Like
+                                </div>
+                                <p
+                                    onClick={() =>
+                                        setPosts((prev) =>
+                                            prev.map((p) =>
+                                                p._id === post._id
+                                                    ? { ...p, showComments: !p.showComments }
+                                                    : p
+                                            )
+                                        )
+                                    }
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    View Comments
+                                </p>
+                            </div>
+                            {post.showComments && (
+                                <div className="commentbox">
+                                    <form
+                                        onSubmit={(e) => {
+                                            e.preventDefault();
+                                            handleAddComment(post._id);
+                                        }}
+                                        style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}
+                                    >
+                                        <input
+                                            className="commentInput"
+                                            type="text"
+                                            value={commentInput}
+                                            onChange={(e) => setCommentInput(e.target.value)}
+                                            placeholder="Share your Opinion ..."
+                                        />
+                                        <button type="submit"
+                                        style={{ width: '50px', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '50%', margin: '0' }}
+                                        >
+                                            <i className="ri-send-plane-fill" />
+                                        </button>
+                                    </form>
+                                    
+                                    {post.comments.map((comment) => (
+                                        <>
+                                          <p style={{ marginTop: '16px', fontFamily: 'Jost_l', color: '#555', textAlign: 'center' }}> . . .</p>
+                                  
+                                        <p style={{ marginTop: '16px', fontFamily: 'Jost_l', color: '#555', padding: '0 12px' }} key={comment._id}>{comment.text}</p>
+                                        </>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    ))
+                )}
 
+        {/* <div className="postcard">
+                    <div className="userdets" style={{ display: 'flex' }}>
+                        <img className='.pfpic' src="https://images6.alphacoders.com/135/1354082.jpeg" alt="" />
+                        <div className="username" style={{ fontFamily: 'Jost_l' }}>
+                            <p>Kuserboy789</p>
+                            <p style={{ color: '#999', fontSize: '14px' }}>6 days ago</p>
                         </div>
                     </div>
-
-                ))}
+                    <div className='postcontent'>
+                        <img src="https://i.pinimg.com/originals/e8/c0/14/e8c01439e7eaa357d3608730b32ae42e.jpg" alt="" />
+                        <p className='posttext'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam fuga mollitia accusantium perspiciatis commodi odit, fugit hic laborum praesentium sunt magni architecto nisi. Corporis nulla in voluptates quae et autem?</p>
+                    </div>
+                    <hr style={{ marginTop: '24px', marginBottom: '12px' }} />
+                    <div className="tools">
+                        <div style={{ fontFamily: 'Jost_l', color: '#D91656' }}> <i class="ri-heart-3-fill"></i> Like</div>
+                        <p onClick={() => setCommentboxVisible(!commentboxVisible)} style={{ cursor: 'pointer' }}>View Comments</p>
+                    </div>
+                    </div> */}
             </div>
         </div>
+        </div>
     );
-};
-
-
-const styles = {
-    cardContainer: {
-        backgroundColor: "#febe16",
-        border: "4px solid #febe16",
-        borderRadius: "8px",
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-        padding: "20px",
-        maxWidth: "100%",
-        margin: "20px auto",
-        color: "#010822",
-    },
-    header: {
-        borderBottom: "1px solid #314B43",
-        marginBottom: "10px",
-        paddingBottom: "10px"
-    },
-    title: {
-        fontSize: "1.9rem",
-        fontWeight: "bold",
-        color: "#032119",
-        margin: 0,
-        fontFamily: 'Jost_h'
-    },
-    username: {
-        fontSize: "1.2rem",
-        color: "#032119",
-        margin: 0,
-        marginTop: '4px',
-        fontFamily: 'Jost_l'
-    },
-    content: {
-        fontSize: "16px",
-        margin: "10px 0",
-        color: '#032119',
-        lineHeight: "1.5",
-        fontFamily: 'Jost_l'
-    },
-    footer: {
-        marginTop: "13px",
-    },
-    tags: {
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "5px",
-    },
-    tag: {
-        backgroundColor: "",
-        color: "#032119",
-        fontSize: "15px",
-        borderRadius: "4px",
-        padding: "5px 8px",
-        fontWeight: '600',
-        fontFamily: 'Jost_h'
-    },
-
-    comments: {
-        marginTop: "15px",
-        fontSize: "17px",
-        fontFamily: 'Jost_l',
-        color: '#032119'
-    },
-    commentList: {
-        listStyleType: "none",
-        padding: 0,
-        margin: 0,
-        fontFamily: 'Jost_l'
-    },
-    comment: {
-        backgroundColor: "#032119   ",
-        color: "#fff8e6",
-        padding: "5px 10px",
-        borderRadius: "4px",
-        marginBottom: "5px",
-    },
 };
 
 export default PostCnct

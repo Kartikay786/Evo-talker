@@ -4,40 +4,43 @@ import 'remixicon/fonts/remixicon.css'
 import greenbg from '../assets/EvoTalkerbg.jpg'
 import Profile from '../Component/Profile'
 import { useNavigate } from 'react-router-dom'
+import bg from '../assets/uplash.jpg'
 
 const Userprofilepage = () => {
 
   const navigate = useNavigate();
 
+
+  const img = localStorage.getItem('userpfp');
+
   const forHome = () => {
     navigate('/');
     localStorage.clear();
-}
+  }
+
+  const forBack = () => {
+    navigate('/user');
+  }
 
   return (
     <>
-        <div className="homepage" style={{minHeight:'100vh'}}>
-            
-            <nav>
-                <h1> <span style={{color:'#010822'}}>Evo_</span><span style={{color:'#ffc019'}}>Sphere</span></h1>
-                <div className="navelem">
-                <span style={{backgroundColor:'#314B43',color:'#fff',padding:'8px',borderRadius:'50%',marginRight:'2vh'}}><i className="ri-user-line"></i></span>
-                <button onClick={forHome}>Logout</button>
-                </div>
-            </nav>
+      <div className="homepage" style={{ backgroundSize: 'cover', backgroundImage: `url(${bg})` }} >
 
-            <div className="container">
-                <div className="ylw_cnct" style={{paddingTop:'20vh',justifyContent: 'start',}}>
 
-                   <Profile/>
 
-                </div>
+        <nav>
+          <h1> <span style={{ color: '#010822' }}>Evo_</span><span style={{ color: '#fff' }}>Sphere</span></h1>
+          <div className="navelem" style={{ height: '40px', display: 'flex', alignItems: 'center' }}>
 
-                <div className="grn_cnct">
-                    <img src={greenbg} alt="" />
-                </div>
-            </div>
-     </div>
+            {/* <img style={{ height: '35px', width: '35px', borderRadius: '50%', objectFit: 'cover', marginRight: '2vh' }} src={img} alt="" /> */}
+            <button onClick={forBack} style={{ marginRight: '10px' }}>Back</button>
+            <button onClick={forHome}>Logout</button>
+          </div>
+        </nav>
+
+        <Profile />
+
+      </div>
     </>
   )
 }

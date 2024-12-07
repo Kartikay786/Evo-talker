@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import axios from 'axios';
 
@@ -8,65 +8,86 @@ import 'aos/dist/aos.css'
 
 const MyPost = () => {
 
-    
-    
-  useEffect(()=>{
-    AOS.init({duration:1000});
-    AOS.refresh();
-},[]);
 
-    const [data ,setData] = useState([]);
+
+    useEffect(() => {
+        AOS.init({ duration: 1000 });
+        AOS.refresh();
+    }, []);
+
+    const [data, setData] = useState([]);
 
     const token = localStorage.getItem('userToken');
-    
-    const userId = localStorage.getItem('userId');
 
-    const name = localStorage.getItem('userName');
 
     useEffect(() => {
         const getAllPost = async () => {
             try {
-                const result = await axios.get(`${import.meta.env.VITE_API_URL}/api/post/${userId}`, {
+                const result = await axios.get(`${import.meta.env.VITE_API_URL}/api/post/userpost`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },
                 });
-                setData(result.data);
-                console.log(result);
+                setData(result.data.post);
             } catch (err) {
                 console.log('Error fetching posts:', err);
             }
         };
         getAllPost();
     }, []);
+
+    const handleDelete = async (e,postId) => {
+        e.preventDefault();
+
+        try{
+            if(!postId) console.log('PostId not found');
+
+            await axios.delete(`http://localhost:3000/api/post/${postId}`,{
+                headers : {
+                    Authorization : `Bearer ${token}`
+                }
+            });
+
+            alert('Post delete successfully');
+            getAllPost();
+        }
+        catch(err){
+            console.log('err')
+        }
+    }
     return (
         <>
-            <div className="myPostpage">
-                <h1 style={{ fontSize: '2rem', margin: '10px 0 20px ', textAlign: 'center', padding: '0 0 20px ', color: '#010822', }}>My Post</h1>
+         <h1 style={{ fontSize: '2.5rem', margin: '10px 0 20px ',fontFamily:'Jost_h', textAlign: 'center', padding: '0 0 20px ', color: '#fff', }}>My Post</h1>
 
+            <div className="myPostpage" style={{marginTop:'5vh',display:'flex',gap:'8vh',justifyContent:'center',flexWrap:'wrap'}}>
+               
                 {
-                data.map((post) => (
-                    <div key={post._id} data-aos="fade-right"  style={{ backgroundColor: "#febe16",
-                        border: "4px solid #febe16",
-                        borderRadius: "8px",
-                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                        padding: "20px",
-                        maxWidth: "90%",
-                        margin: "20px auto",
-                        color: "#010822",}}>
-                        <h1 style={{ fontSize: '2rem', margin: '10px 0 20px ', padding: '0 0 20px ', color: '#010822', borderBottom: '1px solid #010822' }}>{name || 'NA'}</h1>
+                    data.map((post) => (
+                        <div className="postcard" key={post._id}>
+                            <div className="userdets" style={{ display: 'flex' }}>
+                                <img className="pfpic" src={post.authorImg} alt="" />
+                                <div className="username" style={{ fontFamily: 'Jost_l' }}>
+                                    <p>{post.authorName}</p>
+                                    <p style={{ color: '#999', fontSize: '14px' }}>
+                                        {new Date(post.createdAt).toLocaleDateString()}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="postcontent">
+                                {post.image && <img src={post.image} alt="Post" />}
+                                <p className="posttext">{post.content}</p>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'end', alignItems: 'end', marginTop: '24px', gap: '16px' }}>
+                                {/* <button type="submit" style={{ padding: '10px 8px', width: '100px', backgroundColor: '#D91656', color: '#fff', borderRadius: '8px' }}>
+                                    Update
+                                </button> */}
+                                <button onClick={(e) => handleDelete(e,post._id)} type="submit" style={{ padding: '10px 8px', width: '100px', backgroundColor: '#D91656', color: '#fff', borderRadius: '8px' }}>
+                                    Delete
+                                </button>
+                            </div>
 
-                        <h1 style={{ fontSize: '1.5rem', fontWeight: '500', margin: '10px 0 5px ', color: '#010822' }}>{post.title}</h1>
-                        <div style={{ fontFamily: 'Jost_l', fontSize: '1.3rem', color: '#032119', margin: '2vh 0' }}>{post.content}</div>
-                        <p style={{ fontSize: '1.1rem', fontFamily: 'Jost_l', marginTop: '2.5vh', color: '#032119', fontWeight: '600' }}>{post.tags.join(' ')}</p>
-
-                      
-                        <button type="submit"  style={{ padding: '4px 4px',width:'90px', display: 'flex', justifySelf: 'flex-end', justifyContent: 'center' }}>
-                           Update
-                        </button>
-                          
-                    </div>
-                ))}
+                        </div>
+                    ))}
             </div>
         </>
     )

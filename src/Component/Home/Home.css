@@ -22,6 +22,7 @@
 
 .homepage nav {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 15px 22vh;
     position: absolute;
@@ -30,7 +31,7 @@
 }
 
 .homepage nav h1 {
-    font-family: 'Jost_h';
+    font-family:monospace   ;
     font-size: 1.8rem;
 }
 
@@ -38,12 +39,11 @@
     padding: 8px 16px;
     margin-right: 10px;
     margin-top: 5px;
-    background-color: #fec887;
+    background-color: #fff;
     border: none;
     border-radius: 8px;
-    color: #032119;
+    color: #D91656;
     font-size: 1.1rem;
-    font-weight: 600;
 }
 
 .homepage .container {
@@ -51,6 +51,7 @@
     height: 100vh;
     display: flex;
     padding: 0 22vh ;
+    /* color: #535c7c; */
 }
 
 .homepage .container .ylw_cnct {
@@ -59,6 +60,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: #010822;
 }
 
 .homepage .container .grn_cnct {
@@ -80,10 +82,10 @@
     width: 200px;
     border-radius: 5px;
     border: none;
-    background-color: #fec887;
+    background-color: #D91656;
     margin-top: 20px;
     padding: 15px 10px;
-    color: #032119;
+    color: #fff;
     font-size: 1.4rem;
     font-weight: 600;
     font-family: 'Jost_l';
@@ -161,9 +163,6 @@
         /* visibility: hidden; */
         width: 15%;
         left: 82%;
-    }
-    .homepage .container img{
-        display: none;
     }
 }
 

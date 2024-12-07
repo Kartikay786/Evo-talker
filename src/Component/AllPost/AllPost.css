@@ -1,26 +1,74 @@
 .postcontainer {
-    width: 80%;
-    min-height: 30vh
-}
-
-.post {
-    min-height: 30vh;
     width: 100%;
-    background-color: #febe16;
-    margin-top: 8vh;
-    border-radius: 12px;
-    padding: 4vh
+    min-height: 30vh;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    gap: 4vh;
+    align-items: flex-start; /* Align cards at the top */
 }
 
+.postcard {
+    width: 500px;
+    background-color: #fff;
+    background: linear-gradient(to right top , #fff ,#fff ,#fff,#D91656);
+    padding: 3vh 2vh;
+    border-radius: 12px;
+    /* Equalize height if necessary */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Adjust content spacing */
+}
+.postcard .userdets img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: antiquewhite;
+    margin-right: 10px;
+    object-fit: cover;
+}
+.postcard .postcontent img{
+    width: auto;
+    display: flex;
+    justify-self: center;
+    height: 50vh;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+.postcard .postcontent .posttext{
+    font-family: 'Jost_l';
+    line-height: 1.2;
+    margin-top: 16px;
+    font-size: 1.05rem;
+    color: #314B43;
+}
+.postcard .tools{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Jost_l';
+    padding: 0 8px;
+    color: #D91656
+}
+.postcard .tools i{
+    padding: 8px;
+    font-size: 1.6rem;
+    background: transparent;
+}
+.postcard .commentbox{
+    margin-top: 24px;
+}
 .commentInput{
     width: 80%;
+    height: 50px;
      border-radius: 8px;
      font-size: 16px;
      font-family: Jost_l;
      padding: 4px 12px;
-     border: 2px solid #314B43;
+     border: 2px solid #c7cac9;
      color: #314B43 ;
-     background: transparent 
+     background: transparent ,
+
 }
 
 @media(max-width:1150px) {
