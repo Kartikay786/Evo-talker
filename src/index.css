@@ -13,6 +13,7 @@ body {
   height: 100%;
   width: 100%;
   background-color: #fff8e6;
-  background-size: contain;
+  background-size: cover;
   background-image: url('./assets/uplash.jpg');
+ 
 }

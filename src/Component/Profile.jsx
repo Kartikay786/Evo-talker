@@ -8,7 +8,7 @@ const Profile = () => {
 
     return (
         <>
-            <div style={{padding:'0 2vh'}}>
+            <div style={{ padding: '0 2vh' }}>
 
                 {/* <Userprofile />
 
@@ -21,18 +21,23 @@ const Profile = () => {
 
                 {/* <MyPost/> */}
 
-                {/* <MyPost /> */} 
+                {/* <MyPost /> */}
 
-                <div className="profile_cnct_left" style={{backgroundColor:'',display:'flex',gap:'6vh',justifyContent:'center',paddingTop:'20vh'}}>
-                    <Userprofile/>
-                    <PostCreate/>
+                <div className="profile_cnct_left" style={{ backgroundColor: '', display: 'flex', gap: '6vh', justifyContent: 'center', paddingTop: '20vh' }}>
+                    <Userprofile />
+                    <PostCreate />
                 </div>
 
-                <hr style={{ margin: '10vh 0 2vh' ,height:'5px'}} />
-                <div className='post_cnct_right' style={{width:'100%',}}>
-                    <MyPost/>
+                <hr style={{ margin: '10vh 0 2vh', height: '5px' }} />
+                <div className='post_cnct_right' style={{ width: '100%', }}>
+                    <MyPost />
+                </div>
+                <div style={{ height: '100vh', width: '100%', position: 'fixed', backgroundColor: '#d9165782',top:'0vh',left:'0' }}>
+
                 </div>
             </div>
+
+
 
         </>
     )

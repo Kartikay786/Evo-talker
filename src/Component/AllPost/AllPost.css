@@ -5,13 +5,14 @@
     display: flex;
     justify-content: center;
     gap: 4vh;
-    align-items: flex-start; /* Align cards at the top */
+    align-items: flex-start;
+    /* Align cards at the top */
 }
 
 .postcard {
     width: 500px;
-    background-color: #fff;
-    background: linear-gradient(to right top , #fff ,#fff ,#fff,#D91656);
+    background-color: rgba(255, 255, 255, 0.7);
+    /* background: linear-gradient(to right top , #fff ,#fff ,#fff,#D91656); */
     padding: 3vh 2vh;
     border-radius: 12px;
     /* Equalize height if necessary */

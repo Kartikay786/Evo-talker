@@ -4,6 +4,7 @@ import './Profile.css'
 import AOS from 'aos';
 import 'aos/dist/aos.css'
 
+
 const PostCreate = () => {
 
 
@@ -49,7 +50,7 @@ const PostCreate = () => {
             newPostFormData.append('content', formData.content);
             newPostFormData.append('image', formData.image);
 
-            const result = await axios.post(`http://localhost:3000/api/post/create`, newPostFormData
+            const result = await axios.post(`${import.meta.env.VITE_API_URL}/api/post/create`, newPostFormData
                 , {
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -80,7 +81,7 @@ const PostCreate = () => {
                 <h1 style={{ fontSize: '2rem', margin: '0px 0 20px ', textAlign: 'start', padding: '0 0 10px ', color: '#010822', borderBottom: '1px solid #010822' }}>Create Post</h1>
                 <form action="" onSubmit={handleCreatePost} style={{ padding: '0 ' }}>
 
-                    <input
+                    {/* <input
                         type="text"
                         style={{ width: '100%', borderRadius: '8px', marginTop: '2vh', fontFamily: 'Jost_l', fontSize: '1.3rem', padding: '8px 12px', border: '1px solid #010822 ', color: '#333 ', background: 'transparent' }}
                         placeholder="Write Content of your Post..."
@@ -88,7 +89,15 @@ const PostCreate = () => {
                         value={formData.content}
                         onChange={handleChange}
                         required
-                    />
+                    /> */}
+                    <textarea id="" rows={4}
+                     style={{ width: '100%', borderRadius: '8px', marginTop: '2vh', fontFamily: 'Jost_l', fontSize: '1.3rem', padding: '8px 12px', border: '1px solid #010822 ', color: '#333 ', background: 'transparent' }}
+                     placeholder="Write Content of your Post..."
+                     name="content"
+                     value={formData.content}
+                     onChange={handleChange}
+                     required
+                    ></textarea>
                     <input
                         type="file"
                         ref={fileInputRef} // Reference to the input

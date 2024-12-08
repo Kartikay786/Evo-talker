@@ -21,7 +21,7 @@ const Userpage = () => {
 
   return (
     <>
-         <div className="homepage" style={{ backgroundSize: 'cover', backgroundImage: `url(${bg})` }} >
+         <div className="homepage" style={{ backgroundSize: 'cover', backgroundImage: `url(${bg})`  }} >
 
                    
             <nav>

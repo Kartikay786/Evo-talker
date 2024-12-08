@@ -120,9 +120,9 @@ const SignupForm = ({ toggleVisibility }) => {
               style={{ display: 'none' }} // Hide the input
               onChange={handleFileChange} // Handle file selection
             />
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '14px' }}>
               <p style={{ fontFamily: 'Jost_l', }}>Upload Profile</p>
-              <div onClick={handlefileSelect} style={{ padding: '8px 24px', fontFamily: 'Jost_l', backgroundColor: '#0B192C', color: '#fff', borderRadius: '4px', cursor: 'pointer' }}>
+              <div onClick={handlefileSelect} style={{ padding: '8px 36px', fontFamily: 'Jost_l', backgroundColor: '#0B192C', color: '#fff', borderRadius: '4px', cursor: 'pointer' }}>
                 Choose
               </div>
             </div>
