@@ -1,7 +1,6 @@
 import React,{useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 
-import emoji from '../../assets/emojitwbg.png'
 import AOS from 'aos';
 import 'aos/dist/aos.css'
 

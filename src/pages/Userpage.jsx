@@ -1,7 +1,6 @@
 import React from 'react'
 import '../Component/Home/Home.css'
 import 'remixicon/fonts/remixicon.css'
-import greenbg from '../assets/EvoTalkerbg.jpg'
 import { useNavigate } from 'react-router-dom'
 import PostCnct from '../Component/AllPost/Postsection'
 import bg from '../assets/uplash.jpg'
