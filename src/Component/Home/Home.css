@@ -160,9 +160,8 @@
         padding: 6px 12px;
     }
     .homepage .container  .grn_cnct{
-        /* visibility: hidden; */
-        width: 15%;
-        left: 82%;
+        visibility: hidden;
+        
     }
 }
 
@@ -171,10 +170,7 @@
         padding-left: 1vh;
         padding-right: 1vh;
     }
-    .homepage .container  .grn_cnct{
-        visibility: hidden;
-        
-    }
+
     .homepage .container .ylw_cnct{
         width: 100%;
         padding: 10px;
