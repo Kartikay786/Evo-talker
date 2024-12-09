@@ -146,7 +146,7 @@ const PostCnct = () => {
                                 </div>
                                 <hr style={{ marginTop: '24px', marginBottom: '12px' }} />
                                 <div className="tools">
-                                    {
+                                    {/* {
                                         post.hasliked ? (
                                             <div style={{ fontFamily: 'Jost_l', color: '#D91656', display: 'flex', alignItems: 'center' }} >
                                                 <i onClick={() => {
@@ -163,7 +163,7 @@ const PostCnct = () => {
                                                         className="ri-heart-3-line" /> {post.likes} Like
                                                 </div>
                                             )
-                                    }
+                                    } */}
                                     <p
                                         onClick={() => {
                                             setPosts((prev) =>

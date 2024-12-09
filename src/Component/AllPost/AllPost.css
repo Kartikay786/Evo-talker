@@ -46,7 +46,7 @@
 }
 .postcard .tools{
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     font-family: 'Jost_l';
     padding: 0 8px;
