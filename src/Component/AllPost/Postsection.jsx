@@ -117,7 +117,7 @@ const PostCnct = () => {
 
 
     return (
-        <div className="container" style={{ padding: '0 4vw' }}>
+        <div className="cnct" style={{ padding: '0 4vw' }}>
 
             <div className="ylw_cnct" style={{ justifyContent: 'start', paddingTop: '15vh', width: '100%' }}>
 
@@ -216,7 +216,7 @@ const PostCnct = () => {
                         ))
                     )}
 
-                    <div style={{ height: '100vh', width: '100%', position: 'fixed', backgroundColor: 'rgba(217, 22, 87, 0.5);', top: '0vh', left: '0' }}>
+                    <div style={{ height: '100vh', width: '100%', position: 'fixed', backgroundColor: 'rgba(217, 22, 87, 0.5)', top: '  0vh', left: '0' }}>
 
                     </div>
                 </div>

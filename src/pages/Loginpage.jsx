@@ -30,7 +30,7 @@ const Loginpage = () => {
                     </div>
                 </nav>
 
-                <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+                <div className="cnct" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',height:'100vh',padding:'2vh' }}>
 
                     {isVisible && <LoginForm toggleVisibility={toggleVisibility} />}
                     {!isVisible && <SignupForm toggleVisibility={toggleVisibility} />}

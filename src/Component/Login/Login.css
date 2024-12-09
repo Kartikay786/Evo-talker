@@ -46,7 +46,7 @@
 @media (max-width: 465px) {
     .loginform {
         /* padding: 3vh 6vh; Smaller padding */
-        width: 95%; 
+        width: 100%; 
         display: flex;
         flex-direction: column;
         justify-self: center;

@@ -11,10 +11,11 @@
 
 .postcard {
     width: 500px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.8);
     /* background: linear-gradient(to right top , #fff ,#fff ,#fff,#D91656); */
     padding: 3vh 2vh;
     border-radius: 12px;
+    z-index: 11px;
     /* Equalize height if necessary */
     display: flex;
     flex-direction: column;

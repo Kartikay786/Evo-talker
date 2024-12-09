@@ -27,7 +27,7 @@
     padding: 15px 22vh;
     position: fixed;
     z-index: 5;
-    width: 100%;
+     width: 100%;
 }
 
 .homepage nav h1 {
@@ -61,12 +61,13 @@
     flex-direction: column;
     justify-content: center;
     color: #010822;
+    z-index: 9;
 }
 
 .homepage .container .grn_cnct {
     width: 30%;
     height: 100%;
-    background-color: #032119;
+    background-color: #010822;
     display: flex;
     align-items: center;
     position: fixed;
@@ -94,6 +95,7 @@
 .homepage .container .grn_cnct img {
     object-fit: cover;
     width: 100%;
+    background-color: #010822;
     scale: 1.2;
     border-radius: 12px;
 }

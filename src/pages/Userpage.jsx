@@ -23,10 +23,10 @@ const Userpage = () => {
          <div className="homepage" style={{ backgroundSize: 'cover', backgroundImage: `url(${bg})`  }} >
 
                    
-            <nav>
-            <h1> <span style={{ color: '#010822' }}>Evo_</span><span style={{ color: '#fff' }}>Sphere</span></h1>
-            <div className="navelem" style={{height:'40px',display:'flex',alignItems:'center'}}>
-                        <img onClick={forProfile} style={{height:'35px',width:'35px',borderRadius:'50%',objectFit:'cover',marginRight:'2vh'}} src={img} alt="" />
+            <nav style={{zIndex:'11px'}}>
+            <h1> <span style={{ color: '#010822',zIndex:'11px' }}>Evo_</span><span style={{ color: '#fff',zIndex:'11px' }}>Sphere</span></h1>
+            <div className="navelem" style={{height:'40px',display:'flex',alignItems:'center',zIndex:'11px'}}>
+                        <img onClick={forProfile} style={{height:'35px',width:'35px',borderRadius:'50%',objectFit:'cover',marginRight:'2vh',cursor:'pointer'}} src={img} alt="" />
                     <button onClick={forHome}>Logout</button>
                 </div>
             </nav>
